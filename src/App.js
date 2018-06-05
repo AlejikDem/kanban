@@ -4,9 +4,9 @@ import Field from './components/Field/Field';
 
 const App = () => {
   return (
-    <div>
+    // <div>
       <Field />
-    </div>
+    // </div>
   );
 };
 
