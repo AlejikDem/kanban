@@ -1,8 +1,12 @@
 import React from 'react';
 
+import Field from './components/Field/Field';
+
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <Field />
+    </div>
   );
 };
 
