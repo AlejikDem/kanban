@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Field from './components/Field/Field';
+import FieldContainer from './components/Field/FieldContainer';
 
 const App = () => {
   return (
     // <div>
-      <Field />
+      <FieldContainer />
     // </div>
   );
 };

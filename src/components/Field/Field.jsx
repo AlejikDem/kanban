@@ -1,14 +1,8 @@
 import React from 'react';
 import { css } from 'emotion';
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
-import { toClass } from 'recompose';
 
-import Column from '../Column/Column';
+import ColumnContainer from '../Column/ColumnContainer';
 import TaskCard from '../TaskCard/TaskCard';
-
-
-const columns = [0, 1, 2, 3];
 
 const Wrapper = css`
   padding: 0 15px;
@@ -22,20 +16,29 @@ const Columns = css`
   height: 300px;
 `;
 
-const Field = () => {
+const columnWrapper = css`
+  display: flex;
+  flex-direction: column;
+  width: 23%;
+`;
+
+const columnTitle = css``;
+
+const Field = ({ columns }) => {
   return (
     <div className={Wrapper}>
       <div>Field</div>
       <TaskCard />
       <div className={Columns}>
         {columns.map(item => (
-          <Column key={item} />
+          <div className={columnWrapper} key={item.id}>
+            <div className={columnTitle}>{item.title}</div>
+            <ColumnContainer key={item.id} item={item} />
+          </div>
         ))}
       </div>
     </div>
   );
 };
 
-export default DragDropContext(HTML5Backend)(
-  toClass(Field)
-);
+export default Field;
