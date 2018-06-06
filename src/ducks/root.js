@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux';
 
-import tester from './tester';
+import dragging from './dragging';
+import tasks from './tasks';
+import columns from './columns';
 
 export default combineReducers({
-  tester
+  dragging,
+  tasks,
+  columns
 });
