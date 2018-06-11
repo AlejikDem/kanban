@@ -1,29 +1,20 @@
 import React from 'react';
 import { css } from 'emotion';
 
-import TaskCard from '../TaskCard/TaskCard';
+import TaskCardContainer from '../TaskCard/TaskCardContainer';
 
 const column = css`
   flex-grow: 1;
+  background-color: #d6eff7;
+  padding: 10px;
 `;
-
-const getColumnColor = props => {
-  const { active, hovered } = props;
-  if (active && hovered) return 'white';
-  if (active) return 'black';
-  return '#d6eff7';
-};
 
 const Column = props => {
   return props.connectDropTarget(
-    <div className={column} style={{ backgroundColor: getColumnColor(props) }}>
-      {/* {props.item.tasks.map(task => {
-        return (
-          <TaskCard task={task} />
-        );
-      })} */}
-      {props.active && <div>Can be dropped</div>}
-      {props.hovered && <div>Hovered</div>}
+    <div className={column}>
+      {props.tasks.map(task => (
+        <TaskCardContainer key={task.id} task={task} />
+      ))}
     </div>
   );
 };

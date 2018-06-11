@@ -9,9 +9,7 @@ import Column from './Column';
 
 const drop = props => {
   console.log('target', props);
-    return ({
-      bob: 1
-    });
+  return { columnId: props.item.id };
 };
 
 const target = {
@@ -29,7 +27,8 @@ const collect = (connect,  monitor) => {
 const mapState = (state, props) => {
   const getTasksByStatus = makeGetTasksByStatus();
   return {
-    tasks: getTasksByStatus(state, props)
+    tasks: getTasksByStatus(state, props),
+    activeMoves: state.dragging.activeMoves,
   };
 };
 

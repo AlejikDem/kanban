@@ -20,8 +20,12 @@ const mockedTasks = [
 
 const initialState = mockedTasks;
 
-export default function tasks(state = initialState, { type }) {
+export default function tasks(state = initialState, { type, payload }) {
   switch(type) {
+    case MOVE_TASK:
+      return state.map(
+        item => item.id === payload.id ? {...item, status: payload.newStatus} : item
+      );
     default:
       return state;
   }

@@ -2,7 +2,6 @@ import React from 'react';
 import { css } from 'emotion';
 
 import ColumnContainer from '../Column/ColumnContainer';
-import TaskCard from '../TaskCard/TaskCard';
 
 const Wrapper = css`
   padding: 0 15px;
@@ -28,7 +27,6 @@ const Field = ({ columns }) => {
   return (
     <div className={Wrapper}>
       <div>Field</div>
-      <TaskCard />
       <div className={Columns}>
         {columns.map(item => (
           <div className={columnWrapper} key={item.id}>
