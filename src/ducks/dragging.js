@@ -7,6 +7,10 @@ export const startDragging = task => ({
   payload: task
 });
 
+export const endDragging = () => ({
+  type: END_DRAGGING
+});
+
 export const setActiveMoves = moves => ({
   type: SET_ACTIVE_MOVES,
   payload: moves
