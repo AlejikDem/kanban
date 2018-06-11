@@ -1,6 +1,8 @@
 import React from 'react';
 import { css } from 'emotion';
 
+import TaskCard from '../TaskCard/TaskCard';
+
 const column = css`
   flex-grow: 1;
 `;
@@ -12,11 +14,14 @@ const getColumnColor = props => {
   return '#d6eff7';
 };
 
-const Column = (props) => {
+const Column = props => {
   return props.connectDropTarget(
     <div className={column} style={{ backgroundColor: getColumnColor(props) }}>
-      <div>Title</div>
-      <div>Column Inner</div>
+      {/* {props.item.tasks.map(task => {
+        return (
+          <TaskCard task={task} />
+        );
+      })} */}
       {props.active && <div>Can be dropped</div>}
       {props.hovered && <div>Hovered</div>}
     </div>
