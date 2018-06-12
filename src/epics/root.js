@@ -1,7 +1,8 @@
 import { combineEpics } from 'redux-observable';
 
-import { onStartDragging } from './dragging';
+import { onStartDragging, onSuccessDragging } from './dragging';
 
 export default combineEpics(
-  onStartDragging
+  onStartDragging,
+  onSuccessDragging
 );
