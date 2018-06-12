@@ -7,13 +7,12 @@ import { makeGetTasksByStatus } from '../../helpers/selectors';
 
 import Column from './Column';
 
-const drop = props => {
-  console.log('target', props);
-  return { columnId: props.item.id };
-};
+const drop = ({ item }) => ({ columnId: item.id });
+const canDrop = ({ item, activeMoves }) => activeMoves.some(move => move === item.id);
 
 const target = {
-  drop
+  drop,
+  canDrop
 };
 
 const collect = (connect,  monitor) => {
@@ -29,6 +28,7 @@ const mapState = (state, props) => {
   return {
     tasks: getTasksByStatus(state, props),
     activeMoves: state.dragging.activeMoves,
+    draggedTask: state.dragging.draggedTask
   };
 };
 

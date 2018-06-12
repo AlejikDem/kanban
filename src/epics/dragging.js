@@ -1,13 +1,32 @@
-import { START_DRAGGING, setActiveMoves } from '../ducks/dragging';
+import * as R from 'ramda';
+import { of, merge } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 
-import { map } from 'rxjs/operators';
+import { START_DRAGGING, SUCCESS_DRAGGING, setActiveMoves, resetDragging  } from '../ducks/dragging';
+import { moveTask } from '../ducks/tasks';
 
-const getActiveMoves = (id, columns) => columns.find(column => column.id === id).moves;
-const setMoves = (status, columns) => setActiveMoves(getActiveMoves(status, columns));
+const getCurrentStatus = (id, columns) => columns.find(column => column.id === id);
+
+const setMoves = R.compose(
+  setActiveMoves,
+  R.prop('moves'),
+  getCurrentStatus
+);
 
 export const onStartDragging = (action$, store) =>
   action$.ofType(START_DRAGGING)
     .pipe(
       map(
-        ({ payload }) => setMoves(payload.status, store.getState().columns))
-      );
+        ({ payload }) => setMoves(
+          payload.status,
+          store.getState().columns
+        )));
+
+export const onSuccessDragging = action$ =>
+  action$.ofType(SUCCESS_DRAGGING)
+    .pipe(
+      mergeMap(
+        ({ payload }) => merge(
+          of(moveTask(payload.id, payload.newStatus)),
+          of(resetDragging())
+        )));

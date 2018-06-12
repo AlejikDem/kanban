@@ -1,28 +1,35 @@
+import * as R from 'ramda';
 import { DragSource } from 'react-dnd';
 import { connect } from 'react-redux';
 import { compose, toClass, pure } from 'recompose';
 
-import { startDragging, endDragging } from '../../ducks/dragging';
-import { moveTask } from '../../ducks/tasks';
+import { startDragging, resetDragging, successDragging } from '../../ducks/dragging';
 import { TASK } from '../../helpers/dragItems';
 
 import TaskCard from './TaskCard';
 
+const beginDrag = ({ task, startDragging }) => {
+  startDragging(task);
+  return task;
+};
+
+const endDrag = (
+  { resetDragging, successDragging }, monitor
+) => {
+  if (!monitor.didDrop()) {
+    resetDragging();
+    return;
+  }
+
+  const taskId = R.prop('id', monitor.getItem());
+  const newStatus = R.prop('columnId', monitor.getDropResult());
+  
+  successDragging(taskId, newStatus);
+};
+
 const source = {
-  beginDrag({ task, startDragging }) {
-    startDragging(task);
-    return task;
-  },
-  endDrag({ endDragging, moveTask }, monitor) {
-    if (!monitor.didDrop()) {
-      endDragging();
-      return;
-    }
-    const item = monitor.getItem();
-    const result = monitor.getDropResult();
-    console.log(result, 'end Dragging');
-    moveTask(item.id, result.columnId);
-  },
+  beginDrag,
+  endDrag
 };
 
 const collect = (connect, monitor) => ({
@@ -32,12 +39,12 @@ const collect = (connect, monitor) => ({
 
 const mapActions = {
   startDragging,
-  endDragging,
-  moveTask
+  resetDragging,
+  successDragging,
 };
 
 const enhance = compose(
-  connect(() => ({}), mapActions),
+  connect(undefined, mapActions),
   DragSource(TASK, source, collect),
   toClass,
   pure

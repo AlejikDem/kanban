@@ -1,5 +1,6 @@
 export const START_DRAGGING = 'START_DRAGGING';
-export const END_DRAGGING = 'END_DRAGGING';
+export const SUCCESS_DRAGGING = 'SUCCESS_DRAGGING';
+export const RESET_DRAGGING = 'RESET_DRAGGING';
 export const SET_ACTIVE_MOVES = 'SET_ACTIVE_MOVES';
 
 export const startDragging = task => ({
@@ -7,8 +8,13 @@ export const startDragging = task => ({
   payload: task
 });
 
-export const endDragging = () => ({
-  type: END_DRAGGING
+export const successDragging = (id, newStatus) => ({
+  type: SUCCESS_DRAGGING,
+  payload: { id, newStatus }
+});
+
+export const resetDragging = () => ({
+  type: RESET_DRAGGING
 });
 
 export const setActiveMoves = moves => ({
@@ -30,7 +36,7 @@ export default function dragging(state = initialState, { type, payload }) {
         draggedTask: payload,
         isDragging: true
       };
-    case END_DRAGGING:
+    case RESET_DRAGGING:
       return {
         ...state,
         activeMoves: [],
