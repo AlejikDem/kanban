@@ -16,6 +16,16 @@ const mockedTasks = [
     title: 'Make layout',
     status: 0,
   },
+  {
+    id: 2,
+    title: 'Do something',
+    status: 0,
+  },
+  {
+    id: 3,
+    title: 'Relax',
+    status: 0,
+  },
 ];
 
 const initialState = mockedTasks;
