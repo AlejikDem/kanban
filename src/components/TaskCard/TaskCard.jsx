@@ -3,7 +3,8 @@ import { css } from 'emotion';
 
 const card = css`
   cursor: pointer;
-  background-color: #ccc;
+  border: 1px solid #ccc;
+  background-color: #fff;
   margin-bottom: 10px;
   padding: 2px;
 `;

@@ -21,7 +21,11 @@ const columnWrapper = css`
   width: 23%;
 `;
 
-const columnTitle = css``;
+const columnTitle = css`
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-align: center;
+`;
 
 const Field = ({ columns }) => {
   return (
