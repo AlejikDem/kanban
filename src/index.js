@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import './assets/reset.css';
-import './assets/styles.css';
+import './assets/styles/reset.css';
+import './assets/styles/styles.css';
 import configureStore from './helpers/configureStore';
 
 import App from './App';
