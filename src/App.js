@@ -1,12 +1,19 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import FieldContainer from './components/Field/FieldContainer';
+import routes from './helpers/routes';
 
 const App = () => {
   return (
-    // <div>
-      <FieldContainer />
-    // </div>
+    <div>
+      <Router>
+        <Switch>
+          {routes.map(item => (
+            <Route key={item.title} {...item} />
+          ))}
+        </Switch>
+      </Router>
+    </div>
   );
 };
 

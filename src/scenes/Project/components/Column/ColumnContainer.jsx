@@ -2,8 +2,8 @@ import { DropTarget } from 'react-dnd';
 import { compose, toClass, pure } from 'recompose';
 import { connect } from 'react-redux';
 
-import { TASK } from '../../helpers/dragItems';
-import { makeGetTasksByStatus } from '../../helpers/selectors';
+import { TASK } from '../../../../helpers/dragItems';
+import { makeGetTasksByStatus } from '../../../../helpers/selectors';
 
 import Column from './Column';
 

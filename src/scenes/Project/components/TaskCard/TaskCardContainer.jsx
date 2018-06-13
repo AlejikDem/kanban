@@ -3,8 +3,8 @@ import { DragSource } from 'react-dnd';
 import { connect } from 'react-redux';
 import { compose, toClass, pure } from 'recompose';
 
-import { startDragging, resetDragging, successDragging } from '../../ducks/dragging';
-import { TASK } from '../../helpers/dragItems';
+import { startDragging, resetDragging, successDragging } from '../../../../ducks/dragging';
+import { TASK } from '../../../../helpers/dragItems';
 
 import TaskCard from './TaskCard';
 
