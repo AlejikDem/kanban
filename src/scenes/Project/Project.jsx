@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from 'emotion';
 
 import FieldContainer from './components/Field/FieldContainer';
+import TimerContainer from './components/Timer/TimerContainer';
 
 const wrapper = css`
   padding: 0 15px;
@@ -15,6 +16,9 @@ const top = css`
 `;
 
 const topSlot = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 50%;
   height: 200px;
 `;
@@ -24,7 +28,9 @@ const Project = () => {
     <div className={wrapper}>
       <div className={top}>
         <div className={topSlot}></div>
-        <div className={topSlot}></div>
+        <div className={topSlot}>
+          <TimerContainer />
+        </div>
       </div>
       <FieldContainer />
     </div>
