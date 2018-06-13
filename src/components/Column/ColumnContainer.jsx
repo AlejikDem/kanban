@@ -19,7 +19,7 @@ const collect = (connect,  monitor) => {
   return ({
     connectDropTarget: connect.dropTarget(),
     active: monitor.canDrop(),
-    hovered: monitor.isOver({ shallow: true }),
+    hovered: monitor.isOver({ shallow: true })
   });
 };
 
@@ -28,7 +28,7 @@ const mapState = (state, props) => {
   return {
     tasks: getTasksByStatus(state, props),
     activeMoves: state.dragging.activeMoves,
-    draggedTask: state.dragging.draggedTask
+    isDragging: state.dragging.isDragging
   };
 };
 

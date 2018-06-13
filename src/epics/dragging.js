@@ -5,7 +5,7 @@ import { map, mergeMap } from 'rxjs/operators';
 import { START_DRAGGING, SUCCESS_DRAGGING, setActiveMoves, resetDragging  } from '../ducks/dragging';
 import { moveTask } from '../ducks/tasks';
 
-const getCurrentStatus = (id, columns) => columns.find(column => column.id === id);
+const getCurrentStatus = (id, columns) => R.find(R.propEq('id', id), columns);;
 
 const setMoves = R.compose(
   setActiveMoves,

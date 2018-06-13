@@ -3,26 +3,35 @@ import { css } from 'emotion';
 
 import TaskCardContainer from '../TaskCard/TaskCardContainer';
 
-const column = css`
-  flex-grow: 1;
-  background-color: #d6eff7;
-  padding: 10px;
-`;
+const getStyles = (isDragging, active, hovered) => {
+  if (!isDragging) return normalStyles;
+  if (active && hovered) return highlighting;
+  if (!active) return disabled;
+
+  return normalStyles;
+};
+
+const normalStyles = {
+  backgroundColor: '#d6eff7'
+};
 
 const highlighting = {
+  backgroundColor: '#d6eff7',
   boxShadow: '0px 0px 7px 0px rgba(0,0,0,0.5)'
 };
 
-const placeholder = css`
-  background-color: #888;
-  height: 22px;
-  margin-bottom: 10px;
+const disabled = {
+  backgroundColor: '#ccc'
+};
+
+const column = css`
+  flex-grow: 1;
+  padding: 10px;
 `;
 
 const Column = props => {
   return props.connectDropTarget(
-    <div className={column} style={props.active ? highlighting : {}}>
-      {(props.active && props.hovered) && <div className={placeholder}></div>}
+    <div className={column} style={getStyles(props.isDragging, props.active, props.hovered)}>
       {props.tasks.map(task => (
         <TaskCardContainer key={task.id} task={task} />
       ))}
