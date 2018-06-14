@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion';
+import { cx, css } from 'emotion';
 
 import FieldContainer from './components/Field/FieldContainer';
 import TimerContainer from './components/Timer/TimerContainer';
@@ -13,22 +13,29 @@ const wrapper = css`
 const top = css`
   display: flex;
   align-items: stretch;
+  margin-bottom: 15px;
 `;
 
 const topSlot = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
   height: 200px;
+`;
+
+const first = css`
+  width: 65%;
+`;
+const second = css`
+  width: 35%;
 `;
 
 const Project = () => {
   return (
     <div className={wrapper}>
       <div className={top}>
-        <div className={topSlot}></div>
-        <div className={topSlot}>
+        <div className={cx(topSlot, first)}></div>
+        <div className={cx(topSlot, second)}>
           <TimerContainer />
         </div>
       </div>
