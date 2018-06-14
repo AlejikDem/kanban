@@ -14,18 +14,20 @@ const buttons = css`
   justify-content: center;
 `;
 
-const Timer = () => {
+const Timer = props => {
   return (
     <div>
       <div className={numbers}>
-        <div>25</div>
+        <div>{props.minutes}</div>
         <div>:</div>
-        <div>00</div>
+        <div>{props.seconds < 10 ? '0' : ''}{props.seconds}</div>
       </div>
       <div className={buttons}>
-        <button>Play</button>
-        {/* <button>Pause</button>
-        <button>Stop</button> */}
+        {props.active && props.intervalId
+          ? <button onClick={props.pause}>Pause</button>
+          : <button onClick={props.start}>Play</button>
+        }
+        {props.active && <button onClick={props.stop}>Stop</button>}
       </div>
     </div>
   );
