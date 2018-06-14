@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import routes from './helpers/routes';
 
+import './helpers/icons';
+
 const App = () => {
   return (
     <div>
