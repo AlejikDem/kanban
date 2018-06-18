@@ -3,6 +3,7 @@ import { cx, css } from 'emotion';
 
 import FieldContainer from './components/Field/FieldContainer';
 import TimerContainer from './components/Timer/TimerContainer';
+import ActiveTaskContainer from './components/ActiveTask/ActiveTaskContainer';
 
 const wrapper = css`
   padding: 0 15px;
@@ -18,9 +19,8 @@ const top = css`
 
 const topSlot = css`
   display: flex;
+  align-items: flex-start;
   justify-content: center;
-  align-items: center;
-  height: 200px;
 `;
 
 const first = css`
@@ -34,7 +34,9 @@ const Project = () => {
   return (
     <div className={wrapper}>
       <div className={top}>
-        <div className={cx(topSlot, first)}></div>
+        <div className={cx(topSlot, first)}>
+          <ActiveTaskContainer />
+        </div>
         <div className={cx(topSlot, second)}>
           <TimerContainer />
         </div>
