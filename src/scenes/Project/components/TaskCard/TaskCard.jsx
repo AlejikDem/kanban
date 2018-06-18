@@ -1,18 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 
-const priorityColors = {
-  0: 'green',
-  1: 'yellow',
-  2: 'red'
-};
-
-const pomodorColor = {
-  0: 'white',
-  1: 'orange',
-  2: 'red',
-  3: 'green'
-};
+import { PRIORITIES_COLORS, POMODORO_COLOR } from '../../../../helpers/constants';
 
 const card = css`
   cursor: pointer;
@@ -56,7 +45,7 @@ const TaskCard = ({ connectDragSource, isDragging, task }) => {
       <div className={top}>
         <div
           className={prior}
-          style={{ backgroundColor: priorityColors[task.priority]}}
+          style={{ backgroundColor: PRIORITIES_COLORS[task.priority]}}
         />
         <div className={title}>{ task.title }</div>
       </div>
@@ -65,7 +54,7 @@ const TaskCard = ({ connectDragSource, isDragging, task }) => {
           <div
             className={pomodor}
             key={i}
-            style={{ backgroundColor: pomodorColor[item.status] }}
+            style={{ backgroundColor: POMODORO_COLOR[item.status] }}
           />
         )))}
       </div>

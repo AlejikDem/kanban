@@ -9,38 +9,42 @@ const mockedTasks = [
   {
     id: 0,
     title: 'Buy milk',
-    description: 'Lorem Ipsum',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     status: 0,
     priority: 0,
     estimate: 1,
-    tomatos: [{ status: 0 }]
+    tomatos: [{ status: 0 }],
+    createdAt: new Date(),
   },
   {
     id: 1,
     title: 'Make layout',
-    description: 'Lorem Ipsum',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     status: 0,
     priority: 2,
     estimate: 2,
-    tomatos: [{ status: 1 }, { status: 0 }]
+    tomatos: [{ status: 1 }, { status: 0 }],
+    createdAt: new Date(),
   },
   {
     id: 2,
     title: 'Do something',
-    description: 'Lorem Ipsum',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     status: 0,
     priority: 0,
     estimate: 1,
-    tomatos: [{ status: 0 }]
+    tomatos: [{ status: 0 }],
+    createdAt: new Date(),
   },
   {
     id: 3,
     title: 'Relax',
-    description: 'Lorem Ipsum',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     status: 0,
     priority: 1,
     estimate: 3,
-    tomatos: [{ status: 0 }, { status: 0 }, { status: 0 }]
+    tomatos: [{ status: 0 }, { status: 0 }, { status: 0 }],
+    createdAt: new Date(),
   },
 ];
 
