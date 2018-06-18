@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { compose, toClass, pure } from 'recompose';
 
 import { startDragging, resetDragging, successDragging } from '../../../../ducks/dragging';
+import { setActiveTaskId } from '../../../../ducks/tasks';
 import { TASK } from '../../../../helpers/dragItems';
 
 import TaskCard from './TaskCard';
@@ -41,6 +42,7 @@ const mapActions = {
   startDragging,
   resetDragging,
   successDragging,
+  setActiveTaskId
 };
 
 const enhance = compose(

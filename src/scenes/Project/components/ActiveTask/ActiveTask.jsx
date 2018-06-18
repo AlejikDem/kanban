@@ -4,9 +4,18 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 import { PRIORITIES_NAMES, PRIORITIES_COLORS, POMODORO_COLOR } from '../../../../helpers/constants';
 
-const activeTask = css`
+const wrapper = css`
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+`;
+
+const noActiveTask = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 `;
 
 const left = css`
@@ -52,11 +61,12 @@ const pomodor = css`
   margin-right: 5px;
 `;
 
-const estimate = css`
+const chapter = css`
   margin-bottom: 10px;
 `;
 
 const tomatos = css`
+  display: flex;
   margin-bottom: 10px;
 `;
 
@@ -70,45 +80,36 @@ const actions = css`
   align-items: center;
 `;
 
-const mock = {
-  id: 0,
-  title: 'Buy milk',
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  status: 0,
-  priority: 0,
-  estimate: 1,
-  tomatos: [{ status: 0 }],
-  createdAt: new Date().toISOString(),
-};
-
-const ActiveTask = () => {
-  return (
-    <div className={activeTask}>
+const ActiveTask = ({ activeTask }) => {
+  return activeTask ? (
+    <div className={wrapper}>
       <div className={left}>
         <div className={top}>
-          <div className={title}>{mock.title}</div>
+          <div className={title}>{activeTask.title}</div>
           <div className={dash}>-</div>
           <div
             className={priority}
-            style={{ color: PRIORITIES_COLORS[mock.priority] }}
+            style={{ color: PRIORITIES_COLORS[activeTask.priority] }}
           >
-            {PRIORITIES_NAMES[mock.priority]}
+            {PRIORITIES_NAMES[activeTask.priority]}
           </div>
         </div>
-        <div className={date}>{mock.createdAt}</div>
-        <div>{mock.description}</div>
+        <div className={date}>{activeTask.createdAt}</div>
+        <div>{activeTask.description}</div>
       </div>
       <div className={right}>
-        <div className={estimate}>Estimate: {mock.estimate}</div>
-        <div className={tomatos}>
+        <div className={chapter}>Estimate: {activeTask.estimate}</div>
+        <div className={chapter}>
           <div className={chapterTitle}>Tomatos:</div>
-          {mock.tomatos.map(((item, i) => (
-            <div
-              className={pomodor}
-              key={i}
-              style={{ backgroundColor: POMODORO_COLOR[item.status] }}
-            />
-          )))}
+          <div className={tomatos}>
+            {activeTask.tomatos.map(((item, i) => (
+              <div
+                className={pomodor}
+                key={i}
+                style={{ backgroundColor: POMODORO_COLOR[item.status] }}
+              />
+            )))}
+          </div>
         </div>
         <div>
           <div className={chapterTitle}>Actions</div>
@@ -120,6 +121,10 @@ const ActiveTask = () => {
           </div>
         </div>
       </div>
+    </div>
+  ) : (
+    <div className={noActiveTask}>
+      <div>Please, pick the Task</div>
     </div>
   );
 };

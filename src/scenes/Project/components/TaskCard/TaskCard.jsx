@@ -39,9 +39,12 @@ const pomodor = css`
   margin-right: 5px;
 `;
 
-const TaskCard = ({ connectDragSource, isDragging, task }) => {
+const TaskCard = ({ connectDragSource, isDragging, task, setActiveTaskId }) => {
   return isDragging ? null : connectDragSource(
-    <div className={card}>
+    <div
+      className={card}
+      onClick={setActiveTaskId.bind(null, task.id)}
+    >
       <div className={top}>
         <div
           className={prior}

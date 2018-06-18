@@ -19,9 +19,8 @@ const top = css`
 
 const topSlot = css`
   display: flex;
+  align-items: flex-start;
   justify-content: center;
-  align-items: center;
-  height: 200px;
 `;
 
 const first = css`

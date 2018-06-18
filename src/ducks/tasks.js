@@ -1,4 +1,10 @@
+const SET_ACTIVE_TASK_ID = 'SET_ACTIVE_TASK_ID';
 const MOVE_TASK = 'MOVE_TASK';
+
+export const setActiveTaskId = id => ({
+  type: SET_ACTIVE_TASK_ID,
+  payload: id
+});
 
 export const moveTask = (id, newStatus) => ({
   type: MOVE_TASK,
@@ -14,7 +20,7 @@ const mockedTasks = [
     priority: 0,
     estimate: 1,
     tomatos: [{ status: 0 }],
-    createdAt: new Date(),
+    createdAt: new Date().toISOString(),
   },
   {
     id: 1,
@@ -24,7 +30,7 @@ const mockedTasks = [
     priority: 2,
     estimate: 2,
     tomatos: [{ status: 1 }, { status: 0 }],
-    createdAt: new Date(),
+    createdAt: new Date().toISOString(),
   },
   {
     id: 2,
@@ -34,7 +40,7 @@ const mockedTasks = [
     priority: 0,
     estimate: 1,
     tomatos: [{ status: 0 }],
-    createdAt: new Date(),
+    createdAt: new Date().toISOString(),
   },
   {
     id: 3,
@@ -44,18 +50,29 @@ const mockedTasks = [
     priority: 1,
     estimate: 3,
     tomatos: [{ status: 0 }, { status: 0 }, { status: 0 }],
-    createdAt: new Date(),
+    createdAt: new Date().toISOString(),
   },
 ];
 
-const initialState = mockedTasks;
+const initialState = {
+  activeTaskId: null,
+  tasks: mockedTasks
+};
 
 export default function tasks(state = initialState, { type, payload }) {
   switch(type) {
+    case SET_ACTIVE_TASK_ID:
+      return {
+        ...state,
+        activeTaskId: payload
+      };
     case MOVE_TASK:
-      return state.map(
-        item => item.id === payload.id ? {...item, status: payload.newStatus} : item
-      );
+      return {
+        ...state,
+        tasks: state.tasks.map(
+          item => item.id === payload.id ? {...item, status: payload.newStatus} : item
+        )
+      };
     default:
       return state;
   }
