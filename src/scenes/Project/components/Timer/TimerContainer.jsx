@@ -1,16 +1,27 @@
-import {
-  compose,
-  pure,
-  withStateHandlers,
-  withHandlers
-} from 'recompose';
+import { compose, pure, withStateHandlers, withHandlers } from 'recompose';
+import { connect } from 'react-redux';
 
 import Timer from './Timer';
 
+import { toggleHider } from '../../../../ducks/hider';
+import { addTomato } from '../../../../ducks/tasks';
+
 const DEFAULT_MINUTES = 25;
 
-const count = ({ seconds, minutes, secondsTic, minutesTic, intervalId, resetCounter }) => () => {
+const count = ({
+  seconds,
+  minutes,
+  secondsTic,
+  minutesTic,
+  intervalId,
+  resetCounter,
+  addTomato,
+  toggleHider
+}) => () => {
   if (minutes === 0 && seconds === 0) {
+    addTomato();
+    toggleHider(false);
+
     clearInterval(intervalId);
     resetCounter();
   }
@@ -21,15 +32,16 @@ const count = ({ seconds, minutes, secondsTic, minutesTic, intervalId, resetCoun
   }
 };
 
-const start = ({ activateCounter, setIntervalId, count }) => () => {
+const start = ({ activateCounter, setIntervalId, count, toggleHider }) => () => {
   const intervalId = setInterval(count, 1000);
-
+  toggleHider(true);
   activateCounter();
   setIntervalId(intervalId);
 };
 
-const stop = ({ intervalId, resetCounter }) => () => {
+const stop = ({ intervalId, resetCounter, toggleHider }) => () => {
   clearInterval(intervalId);
+  toggleHider(false);
   resetCounter();
 };
 
@@ -67,7 +79,17 @@ const stateHandlers = {
   })
 };
 
+const mapState = ({ tasks }) => ({
+  activeTaskId: tasks.activeTaskId
+});
+
+const mapActions = {
+  toggleHider,
+  addTomato
+};
+
 const enhance = compose(
+  connect(mapState, mapActions),
   withStateHandlers(initialState, stateHandlers),
   withHandlers({ count }),
   withHandlers({ start, pause, stop }),

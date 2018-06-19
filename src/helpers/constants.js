@@ -12,7 +12,6 @@ export const PRIORITIES_COLORS = {
 
 export const POMODORO_COLOR = {
   0: 'white',
-  1: 'orange',
-  2: 'red',
-  3: 'green'
+  1: 'red',
+  2: 'orange'
 };

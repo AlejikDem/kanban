@@ -124,7 +124,7 @@ const ActiveTask = ({ activeTask }) => {
     </div>
   ) : (
     <div className={noActiveTask}>
-      <div>Please, pick the Task</div>
+      <div>Please, pick a Task</div>
     </div>
   );
 };

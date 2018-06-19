@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import * as R from 'ramda';
 
 const timer = css`
   width: 160px;
@@ -15,7 +16,7 @@ const timer = css`
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 101;
     border: 5px dashed green;
     border-radius: 50%;
   }
@@ -27,7 +28,7 @@ const timerInner = css`
   justify-content: center;
   align-items: center;
   position: relative;
-  z-index: 2;
+  z-index: 102;
   background-color: yellow;
   border-radius: 50%;
   height: 100%;
@@ -60,8 +61,12 @@ const Timer = ({
   pause,
   stop,
   active,
-  intervalId
+  intervalId,
+  activeTaskId
 }) => {
+  const activeChoosed = !R.isNil(activeTaskId);
+  const playClick = activeChoosed ? start : null;
+
   return (
     <div className={timer}>
       <div className={timerInner}>
@@ -73,9 +78,16 @@ const Timer = ({
         <div className={buttons}>
           {active && intervalId
             ? <FontAwesomeIcon className={icon} size="2x" icon="pause" onClick={pause} />
-            : <FontAwesomeIcon className={icon} size="2x" icon="play" onClick={start} />
+            : <FontAwesomeIcon
+              style={activeChoosed ? {} : { color: 'grey' }}
+              className={icon}
+              size="2x"
+              icon="play"
+              onClick={playClick}
+            />
           }
-          {active && <FontAwesomeIcon className={icon}  size="2x" icon="stop" onClick={stop} />}
+          {active &&
+            <FontAwesomeIcon className={icon} size="2x" icon="stop" onClick={stop} />}
         </div>
       </div>
     </div>
