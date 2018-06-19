@@ -23,12 +23,12 @@ const collect = (connect,  monitor) => {
   });
 };
 
-const mapState = (state, props) => {
+const mapState = ({ tasks, dragging }, { item }) => {
   const getTasksByStatus = makeGetTasksByStatus();
   return {
-    tasks: getTasksByStatus(state, props),
-    activeMoves: state.dragging.activeMoves,
-    isDragging: state.dragging.isDragging
+    tasks: getTasksByStatus(tasks, item),
+    activeMoves: dragging.activeMoves,
+    isDragging: dragging.isDragging
   };
 };
 
