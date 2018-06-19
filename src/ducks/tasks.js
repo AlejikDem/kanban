@@ -1,12 +1,16 @@
-import * as R from 'ramda';
-
-const SET_ACTIVE_TASK_ID = 'SET_ACTIVE_TASK_ID';
-const MOVE_TASK = 'MOVE_TASK';
-const ADD_TOMATO = 'ADD_TOMATO';
+export const SET_ACTIVE_TASK_ID = 'SET_ACTIVE_TASK_ID';
+export const SET_TASKS = 'SET_TASKS';
+export const MOVE_TASK = 'MOVE_TASK';
+export const TIMER_END = 'TIMER_END';
 
 export const setActiveTaskId = id => ({
   type: SET_ACTIVE_TASK_ID,
   payload: id
+});
+
+export const setTasks = tasks => ({
+  type: SET_TASKS,
+  payload: tasks
 });
 
 export const moveTask = (id, newStatus) => ({
@@ -14,8 +18,8 @@ export const moveTask = (id, newStatus) => ({
   payload: { id, newStatus }
 });
 
-export const addTomato = () => ({
-  type: ADD_TOMATO
+export const timerEnd = () => ({
+  type: TIMER_END
 });
 
 const mockedTasks = [
@@ -61,12 +65,6 @@ const mockedTasks = [
   },
 ];
 
-const buildTomato = (status, column) => ({
-  status,
-  completed: new Date().toISOString(),
-  column
-});
-
 const initialState = {
   activeTaskId: null,
   tasks: mockedTasks
@@ -79,31 +77,17 @@ export default function tasks(state = initialState, { type, payload }) {
         ...state,
         activeTaskId: payload
       };
+    case SET_TASKS:
+      return {
+        ...state,
+        tasks: payload
+      };
     case MOVE_TASK:
       return {
         ...state,
         tasks: state.tasks.map(
           item => item.id === payload.id ? {...item, status: payload.newStatus} : item
         )
-      };
-    case ADD_TOMATO:
-      const { tasks, activeTaskId } = state;
-      const activeTaskIndex = R.findIndex(R.propEq('id', activeTaskId), tasks);
-      const activeTask = tasks[activeTaskIndex];
-      const currStatus = activeTask.status;
-      const tomatos = R.prop('tomatos', activeTask);
-
-      const nextTomatoIndex = R.findIndex(R.propEq('status', 0), tomatos);
-
-      const newTomatos = R.gte(nextTomatoIndex, 0)
-        ? R.update(nextTomatoIndex, buildTomato(1, currStatus) , tomatos)
-        : R.append(buildTomato(2, currStatus), tomatos);
-
-      const newTask = R.assoc('tomatos', newTomatos, activeTask);
-
-      return {
-        ...state,
-        tasks: R.update(activeTaskIndex, newTask, tasks)
       };
     default:
       return state;

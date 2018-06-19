@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Timer from './Timer';
 
 import { toggleHider } from '../../../../ducks/hider';
-import { addTomato } from '../../../../ducks/tasks';
+import { timerEnd } from '../../../../ducks/tasks';
 
 const DEFAULT_MINUTES = 25;
 
@@ -15,12 +15,11 @@ const count = ({
   minutesTic,
   intervalId,
   resetCounter,
-  addTomato,
+  timerEnd,
   toggleHider
 }) => () => {
   if (minutes === 0 && seconds === 0) {
-    addTomato();
-    toggleHider(false);
+    timerEnd();
 
     clearInterval(intervalId);
     resetCounter();
@@ -85,7 +84,7 @@ const mapState = ({ tasks }) => ({
 
 const mapActions = {
   toggleHider,
-  addTomato
+  timerEnd
 };
 
 const enhance = compose(
