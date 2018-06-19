@@ -1,9 +1,5 @@
-import {
-  compose,
-  pure,
-  withStateHandlers,
-  withHandlers
-} from 'recompose';
+import { compose, pure, withStateHandlers, withHandlers } from 'recompose';
+import { connect } from 'react-redux';
 
 import Timer from './Timer';
 
@@ -67,7 +63,12 @@ const stateHandlers = {
   })
 };
 
+const mapState = ({ tasks }) => ({
+  activeTaskId: tasks.activeTaskId
+});
+
 const enhance = compose(
+  connect(mapState),
   withStateHandlers(initialState, stateHandlers),
   withHandlers({ count }),
   withHandlers({ start, pause, stop }),
