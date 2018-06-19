@@ -15,7 +15,7 @@ const timer = css`
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 101;
     border: 5px dashed green;
     border-radius: 50%;
   }
@@ -27,7 +27,7 @@ const timerInner = css`
   justify-content: center;
   align-items: center;
   position: relative;
-  z-index: 2;
+  z-index: 102;
   background-color: yellow;
   border-radius: 50%;
   height: 100%;
