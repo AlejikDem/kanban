@@ -7,6 +7,8 @@ import faAngleLeft from '@fortawesome/fontawesome-free-solid/faAngleLeft';
 import faAngleRight from '@fortawesome/fontawesome-free-solid/faAngleRight';
 import faEdit from '@fortawesome/fontawesome-free-solid/faEdit';
 import faTrashAlt from '@fortawesome/fontawesome-free-solid/faTrashAlt';
+import faListAlt from '@fortawesome/fontawesome-free-solid/faListAlt';
+import faUserCircle from '@fortawesome/fontawesome-free-solid/faUserCircle';
 
 fontawesome.library.add(
   brands,
@@ -16,5 +18,7 @@ fontawesome.library.add(
   faAngleLeft,
   faAngleRight,
   faEdit,
-  faTrashAlt
+  faTrashAlt,
+  faListAlt,
+  faUserCircle
 );
