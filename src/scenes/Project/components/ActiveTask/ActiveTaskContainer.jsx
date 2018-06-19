@@ -5,8 +5,8 @@ import { getActiveTask } from '../../../../helpers/selectors';
 
 import ActiveTask from './ActiveTask';
 
-const mapState = (state, props) => ({
-  activeTask: getActiveTask(state)
+const mapState = ({ tasks }, props) => ({
+  activeTask: getActiveTask(tasks)
 });
 
 const enhance = compose(
