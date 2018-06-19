@@ -80,7 +80,7 @@ const actions = css`
   align-items: center;
 `;
 
-const ActiveTask = ({ activeTask }) => {
+const ActiveTask = ({ activeTask, removeTask }) => {
   return activeTask ? (
     <div className={wrapper}>
       <div className={left}>
@@ -116,7 +116,13 @@ const ActiveTask = ({ activeTask }) => {
           <div className={actions}>
             <FontAwesomeIcon className={icon} size="2x" icon="angle-left" />
             <FontAwesomeIcon className={icon} size="lg" icon="edit" color="orange" />
-            <FontAwesomeIcon className={icon} size="lg" icon="trash-alt" color="red" />
+            <FontAwesomeIcon
+              className={icon}
+              size="lg"
+              icon="trash-alt"
+              color="red"
+              onClick={removeTask.bind(null, activeTask.id)}
+            />
             <FontAwesomeIcon className={icon} size="2x" icon="angle-right" />
           </div>
         </div>

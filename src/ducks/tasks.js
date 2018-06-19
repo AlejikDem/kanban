@@ -1,6 +1,9 @@
+import * as R from 'ramda';
+
 export const SET_ACTIVE_TASK_ID = 'SET_ACTIVE_TASK_ID';
 export const SET_TASKS = 'SET_TASKS';
 export const MOVE_TASK = 'MOVE_TASK';
+export const REMOVE_TASK = 'REMOVE_TASK';
 export const TIMER_END = 'TIMER_END';
 
 export const setActiveTaskId = id => ({
@@ -16,6 +19,11 @@ export const setTasks = tasks => ({
 export const moveTask = (id, newStatus) => ({
   type: MOVE_TASK,
   payload: { id, newStatus }
+});
+
+export const removeTask = id => ({
+  type: REMOVE_TASK,
+  payload: id
 });
 
 export const timerEnd = () => ({
@@ -85,8 +93,18 @@ export default function tasks(state = initialState, { type, payload }) {
     case MOVE_TASK:
       return {
         ...state,
-        tasks: state.tasks.map(
-          item => item.id === payload.id ? {...item, status: payload.newStatus} : item
+        tasks: R.map(
+          item => R.propEq('id', payload.id, item) ? {...item, status: payload.newStatus} : item,
+          state.tasks
+        )
+      };
+    case REMOVE_TASK:
+      return {
+        ...state,
+        activeTaskId: null,
+        tasks: R.filter(
+          item => item.id !== payload,
+          state.tasks
         )
       };
     default:
