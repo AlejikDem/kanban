@@ -1,7 +1,7 @@
 import React from 'react';
 import { cx, css } from 'emotion';
 
-import Header from '../../components/Header/Header';
+import HeaderContainer from '../../components/Header/HeaderContainer';
 import HiderContainer from '../../components/Hider/HiderContainer';
 import FieldContainer from './components/Field/FieldContainer';
 import TimerContainer from './components/Timer/TimerContainer';
@@ -36,7 +36,7 @@ const Project = () => {
   return (
     <div className={wrapper}>
       <HiderContainer />
-      <Header />
+      <HeaderContainer />
       <div className={top}>
         <div className={cx(topSlot, first)}>
           <ActiveTaskContainer />

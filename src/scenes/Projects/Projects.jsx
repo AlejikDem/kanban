@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 import { Link } from 'react-router-dom';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const wrapper = css`
   display: flex;
@@ -27,26 +28,32 @@ const project = css`
   border: 1px solid black;
 `;
 
-const Projects = () => {
+const newProject = css`
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  color: green;
+  cursor: pointer;
+`;
+
+const Projects = ({ projects }) => {
   return (
     <div className={wrapper}>
       <div>
         <div className={title}>Projects</div>
         <div>
-          <Link to="/project" className={project}>
-            Project 1
-          </Link>
-          <Link to="/project" className={project}>
-            Project 2
-          </Link>
-          <Link to="/project" className={project}>
-            Project 3
-          </Link>
-          <Link to="/project" className={project}>
-            Project 4
-          </Link>
+          {projects.map(item => (
+            <Link key={item.id} to="/project" className={project}>
+              {item.title}
+            </Link>
+          ))}
         </div>
       </div>
+      <FontAwesomeIcon
+        icon="plus-circle"
+        size="4x"
+        className={newProject}
+      />
     </div>
   );
 };

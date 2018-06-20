@@ -1,12 +1,12 @@
 import Project from '../scenes/Project/Project';
-import Projects from '../scenes/Projects/Projects';
+import ProjectsContainer from '../scenes/Projects/ProjectsContainer';
 
 const routes = [
   {
     title: 'Projects',
     path: '/',
     exact: true,
-    component: Projects,
+    component: ProjectsContainer,
   },
   {
     title: 'Project',
