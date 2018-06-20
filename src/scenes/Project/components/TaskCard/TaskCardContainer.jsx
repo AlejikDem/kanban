@@ -3,7 +3,7 @@ import { DragSource } from 'react-dnd';
 import { connect } from 'react-redux';
 import { compose, toClass, pure } from 'recompose';
 
-import { startDragging, resetDragging, successDragging } from '../../../../ducks/dragging';
+import { startDragging, resetDragging, startMovingTask } from '../../../../ducks/dragging';
 import { setActiveTaskId } from '../../../../ducks/tasks';
 import { TASK } from '../../../../helpers/dragItems';
 
@@ -15,7 +15,7 @@ const beginDrag = ({ task, startDragging }) => {
 };
 
 const endDrag = (
-  { resetDragging, successDragging }, monitor
+  { resetDragging, startMovingTask }, monitor
 ) => {
   if (!monitor.didDrop()) {
     resetDragging();
@@ -25,7 +25,7 @@ const endDrag = (
   const taskId = R.prop('id', monitor.getItem());
   const newStatus = R.prop('columnId', monitor.getDropResult());
   
-  successDragging(taskId, newStatus);
+  startMovingTask(taskId, newStatus);
 };
 
 const source = {
@@ -41,7 +41,7 @@ const collect = (connect, monitor) => ({
 const mapActions = {
   startDragging,
   resetDragging,
-  successDragging,
+  startMovingTask,
   setActiveTaskId
 };
 
