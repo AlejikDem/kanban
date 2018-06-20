@@ -1,5 +1,5 @@
 export const START_DRAGGING = 'START_DRAGGING';
-export const SUCCESS_DRAGGING = 'SUCCESS_DRAGGING';
+export const START_MOVING_TASK = 'START_MOVING_TASK';
 export const RESET_DRAGGING = 'RESET_DRAGGING';
 export const SET_ACTIVE_MOVES = 'SET_ACTIVE_MOVES';
 
@@ -8,8 +8,8 @@ export const startDragging = task => ({
   payload: task
 });
 
-export const successDragging = (id, newStatus) => ({
-  type: SUCCESS_DRAGGING,
+export const startMovingTask = (id, newStatus) => ({
+  type: START_MOVING_TASK,
   payload: { id, newStatus }
 });
 

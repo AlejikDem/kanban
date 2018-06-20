@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import { of, merge } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 
-import { START_DRAGGING, SUCCESS_DRAGGING, setActiveMoves, resetDragging  } from '../ducks/dragging';
+import { START_DRAGGING, START_MOVING_TASK, setActiveMoves, resetDragging  } from '../ducks/dragging';
 import { moveTask } from '../ducks/tasks';
 
 const getCurrentStatus = (id, columns) => R.find(R.propEq('id', id), columns);;
@@ -22,8 +22,8 @@ export const onStartDragging = (action$, store) =>
           store.getState().columns
         )));
 
-export const onSuccessDragging = action$ =>
-  action$.ofType(SUCCESS_DRAGGING)
+export const onStartMovingTask = action$ =>
+  action$.ofType(START_MOVING_TASK)
     .pipe(
       mergeMap(
         ({ payload }) => merge(
