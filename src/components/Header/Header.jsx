@@ -3,6 +3,10 @@ import { css } from 'emotion';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const wrapper = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   background: grey;
   margin-bottom: 15px;
 `;
@@ -36,13 +40,18 @@ const icon = css`
   }
 `;
 
-const Header = () => {
+const Header = ({ goToProjects }) => {
   return (
     <div className={wrapper}>
       <div className={inner}>
         <div className={projectName}>Mega Project</div>
         <div className={actions}>
-          <FontAwesomeIcon className={icon} size="2x" icon="list-alt" />
+          <FontAwesomeIcon
+            className={icon}
+            size="2x"
+            icon="list-alt"
+            onClick={goToProjects}
+          />
           <FontAwesomeIcon className={icon} size="2x" icon="edit" />
           <FontAwesomeIcon className={icon} size="2x" icon="user-circle" />
         </div>

@@ -15,8 +15,7 @@ const count = ({
   minutesTic,
   intervalId,
   resetCounter,
-  timerEnd,
-  toggleHider
+  timerEnd
 }) => () => {
   if (minutes === 0 && seconds === 0) {
     timerEnd();

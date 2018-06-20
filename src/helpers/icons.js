@@ -9,6 +9,7 @@ import faEdit from '@fortawesome/fontawesome-free-solid/faEdit';
 import faTrashAlt from '@fortawesome/fontawesome-free-solid/faTrashAlt';
 import faListAlt from '@fortawesome/fontawesome-free-solid/faListAlt';
 import faUserCircle from '@fortawesome/fontawesome-free-solid/faUserCircle';
+import faPlusCircle from '@fortawesome/fontawesome-free-solid/faPlusCircle';
 
 fontawesome.library.add(
   brands,
@@ -20,5 +21,6 @@ fontawesome.library.add(
   faEdit,
   faTrashAlt,
   faListAlt,
-  faUserCircle
+  faUserCircle,
+  faPlusCircle
 );
