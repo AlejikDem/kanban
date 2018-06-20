@@ -1,18 +1,18 @@
 import React from 'react';
+import { css } from 'emotion';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './helpers/icons';
-
-import Header from './components/Header/Header';
-import HiderContainer from './components/Hider/HiderContainer';
 import routes from './helpers/routes';
 
+const wrapper = css`
+  position: relative;
+  height: 100%;
+`;
 
 const App = () => {
   return (
-    <div>
-      <HiderContainer />
-      <Header />
+    <div className={wrapper}>
       <Router>
         <Switch>
           {routes.map(item => (

@@ -3,6 +3,10 @@ import { css } from 'emotion';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const wrapper = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   background: grey;
   margin-bottom: 15px;
 `;
